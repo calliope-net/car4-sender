@@ -7,7 +7,8 @@ namespace car4sender
 
     const n_Simulator: boolean = ("€".charCodeAt(0) == 8364) // true, wenn der Code im Simulator läuft
     let n_Buffer19 = Buffer.create(19) // wird gesendet mit radio.sendBuffer
-    let n_x: number, n_y: number, n_motor: number, n_servo: number
+    let n_x: number, n_y: number, n_xmotor: number, n_yservo: number
+    let n_xmin: number, n_xmax: number, n_ymin: number, n_ymax: number
 
     // ========== group="beim Start"
 
@@ -38,8 +39,8 @@ namespace car4sender
         switch (pJoystickValue) {
             case eJoystickValue.x: return n_x
             case eJoystickValue.y: return n_y
-            case eJoystickValue.motor: return n_motor
-            case eJoystickValue.servo: return n_servo
+            case eJoystickValue.motor: return n_xmotor
+            case eJoystickValue.servo: return n_yservo
             default: return 0
         }
     }
@@ -54,14 +55,32 @@ namespace car4sender
             n_x = bu.getUint8(0)
             n_y = bu.getUint8(2)
             // Motor
-            if (between(n_x, 124, 132)) n_motor = 128
-            else n_motor = n_x
+            if (between(n_x, 124, 132)) n_xmotor = 128
+            else n_xmotor = n_x
             // Servo
-            if (between(n_y, 122, 134)) n_servo = 90 // Ruhestellung soll 128 ist auf 128 = 90° anpassen
-            else if (n_y < 20) n_servo = 135 // Werte < 20 wie 0 behandeln (max links)
-            else if (n_y > 235) n_servo = 45 // Werte > 235 wie 255 behandeln (max rechts)
-            else n_servo = Math.map(n_y, 20, 235, 134, 46) // Werte von 32 bis 991 auf 46° bis 134° verteilen
+            if (between(n_y, 122, 134)) n_yservo = 90 // Ruhestellung soll 128 ist auf 128 = 90° anpassen
+            else if (n_y < 20) n_yservo = 135 // Werte < 20 wie 0 behandeln (max links)
+            else if (n_y > 235) n_yservo = 45 // Werte > 235 wie 255 behandeln (max rechts)
+            else n_yservo = Math.map(n_y, 20, 235, 134, 46) // Werte von 32 bis 991 auf 46° bis 134° verteilen
             return true
+        }
+    }
+
+    //% group="Joystick"
+    //% block="minmaxZeile %pXY" weight=8
+    export function minmaxZeile(pXY: eXY) {
+        switch (pXY) {
+            case eXY.x: {
+                if (n_x > 0 && n_x < n_xmin) n_xmin = n_x
+                else if (n_x < 255 && n_x > n_xmax) n_xmax = n_x
+                return format(n_x, 4, eAlign.right) + format(n_xmin, 4, eAlign.right) + format(n_xmax, 4, eAlign.right) + format(n_xmotor, 4, eAlign.right)
+            }
+            case eXY.y: {
+                if (n_y > 0 && n_y < n_ymin) n_ymin = n_y
+                else if (n_y < 255 && n_y > n_ymax) n_ymax = n_y
+                return format(n_y, 4, eAlign.right) + format(n_ymin, 4, eAlign.right) + format(n_ymax, 4, eAlign.right) + format(n_yservo, 4, eAlign.right)
+            }
+            default: return ""
         }
     }
 
@@ -128,8 +147,7 @@ namespace car4sender
         //% block="rechtsbündig"
         right
     }
+    export enum eJoystickValue { x, y, motor, servo }
+    export enum eXY { x, y }
 
-    export enum eJoystickValue {
-        x, y, motor, servo
-    }
 } // car4sender.ts
