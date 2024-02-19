@@ -2,12 +2,15 @@
     "name": "car4-sender",
     "description": "",
     "dependencies": {
-        "core": "*"
+        "core": "*",
+        "radio": "*",
+        "lcd-16x2": "github:calliope-net/lcd-16x2#v2.0.5"
     },
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md"
+        "README.md",
+        "car4sender.ts"
     ],
     "testFiles": [
         "test.ts"
