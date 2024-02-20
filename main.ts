@@ -1,5 +1,5 @@
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
-    basic.showString(car4sender.printBuffer(car4sender.programmBlock(-100, 0, 20)))
+    basic.showString(car4sender.printBuffer(car4sender.programmBlock(0, 180, 20)))
 })
 input.onButtonEvent(Button.AB, input.buttonEventClick(), function () {
     bMotorPower = !(bMotorPower)

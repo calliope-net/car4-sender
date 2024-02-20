@@ -13,7 +13,7 @@ namespace car4sender
     export function programmBlock(motor: number, servo: number, strecke: number) {
         return Buffer.fromArray([
             Math.round(Math.map(motor, -100, 100, 0, 255)),
-            Math.round(Math.map(servo, 0, 180, 45, 135)),
+            Math.round(Math.map(servo, 0, 180, 1, 31)),
             strecke
         ])
     }
