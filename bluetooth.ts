@@ -13,10 +13,10 @@ namespace car4sender
     let n_BufferPointer: eBufferPointer = eBufferPointer.p0 // n=0..5 (n*3)+1 = 1, 4, 7, 10, 13, 16
 
     export enum eBufferOffset { // 3 Byte (b0-b1-b2) ab n_BufferPointer
-        b0_Motor, // 0..128..255
-        b1_Servo, // Bit 4-0 (0..31)
-        b2_Fahrstrecke, // Encoder in cm max. 255cm
-        b1_Bits // Bit 7-6-5
+        b0_Motor = 0, // 0..128..255
+        b1_Servo = 1, // Bit 4-0 (0..31)
+        b2_Fahrstrecke = 2, // Encoder in cm max. 255cm
+        b1_Bits = 3 // Bit 7-6-5
     }
 
     export enum eBufferBit {
@@ -30,8 +30,8 @@ namespace car4sender
     //% group="Bluetooth senden" subcategory="Bluetooth" color=#E3008C
     //% block="Datenpaket senden" weight=9
     export function sendBuffer19() {
-        n_sendBuffer19.setUint8(0, n_xMotor)
-        n_sendBuffer19.setUint8(1, n_yServo)
+        //n_sendBuffer19.setUint8(0, n_xMotor)
+        //n_sendBuffer19.setUint8(1, n_yServo)
         if (!n_Simulator)
             radio.sendBuffer(n_sendBuffer19)
     }
@@ -45,6 +45,7 @@ namespace car4sender
             //return ((r & 0b00011111) + 14) * 3 // Servo 1..31 +14 15..45 *3 45..135
             //case eBufferOffset.b1_Bits:
             //return r >>> 5 // r & 0b11100000 // Bits 0..7
+            case eBufferOffset.b1_Bits: { }
             default: n_sendBuffer19.setUint8(pBufferPointer + pBufferOffset, pByte) // b0_Motor und b2_Fahrstrecke 0..255
         }
     }
