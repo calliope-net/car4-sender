@@ -5,9 +5,9 @@ namespace car4sender
 */ {
     const i2cqwiicJoystick_x20 = 0x20
 
-    const n_Simulator: boolean = ("€".charCodeAt(0) == 8364) // true, wenn der Code im Simulator läuft
-    let n_Buffer19 = Buffer.create(19) // wird gesendet mit radio.sendBuffer
-    let n_x: number, n_y: number, n_xMotor: number, n_yServo: number
+    export const n_Simulator: boolean = ("€".charCodeAt(0) == 8364) // true, wenn der Code im Simulator läuft
+    //let n_Buffer19 = Buffer.create(19) // wird gesendet mit radio.sendBuffer
+    export let n_x: number, n_y: number, n_xMotor: number, n_yServo: number
     let n_xmin = 128, n_xmax = 128, n_ymin = 128, n_ymax = 128
 
     // ========== group="beim Start"
@@ -25,15 +25,15 @@ namespace car4sender
 
     //% group="Bluetooth senden" color=#E3008C
     //% block="Datenpaket senden" weight=9
-    export function sendBuffer19() {
+    /* export function sendBuffer19() {
         n_Buffer19.setUint8(0,n_xMotor)
         n_Buffer19.setUint8(1,n_yServo)
         radio.sendBuffer(n_Buffer19)
-    }
+    } */
 
 
     //% group="Joystick"
-    //% block="Joystick Werte lesen %pJoystickValue" weight=9
+    //% block="Joystick %pJoystickValue" weight=9
     export function joystickValues(pJoystickValue: eJoystickValue) {
         switch (pJoystickValue) {
             case eJoystickValue.x: return n_x
@@ -96,18 +96,18 @@ namespace car4sender
     //% group="ein Bit aus Number (bis 32 Bit) lesen und ändern" advanced=true
     //% block="Zahl %pInt getBit 2** %exp" weight=4
     //% exp.min=0 exp.max=31
-    export function getBit(pInt: number, exp: number): boolean {
+    /* export function getBit(pInt: number, exp: number): boolean {
         exp = Math.trunc(exp)
         if (between(exp, 0, 63))
             return (pInt & 2 ** exp) != 0
         else
             return false
-    }
+    } */
 
     //% group="ein Bit aus Number (bis 32 Bit) lesen und ändern" advanced=true
     //% block="Zahl %pInt setBit 2** %exp %pBit" weight=2
     //% exp.min=0 exp.max=31
-    export function setBit(pInt: number, exp: number, pBit: boolean) {
+    /* export function setBit(pInt: number, exp: number, pBit: boolean) {
         exp = Math.trunc(exp)
         if (between(exp, 0, 63)) {
             if (pBit)
@@ -116,15 +116,15 @@ namespace car4sender
                 return pInt & ~(2 ** exp)
         } else
             return pInt
-    }
+    } */
 
     //% group="ein Bit aus Number (bis 32 Bit) lesen und ändern" advanced=true
     //% block="Buffer offset %pOffset setBit 2** %exp %pBit" weight=1
     //% pOffset.defl=3
     //% exp.min=0 exp.max=7
-    export function setBitBuffer(pOffset: number, exp: number, pBit: boolean) {
+    /* export function setBitBuffer(pOffset: number, exp: number, pBit: boolean) {
         n_Buffer19.setUint8(pOffset, setBit(n_Buffer19.getUint8(pOffset), exp, pBit))
-    }
+    } */
 
     // ========== group="Logik" advanced=true
 

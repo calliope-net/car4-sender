@@ -10,7 +10,8 @@
         "main.blocks",
         "main.ts",
         "README.md",
-        "car4sender.ts"
+        "car4sender.ts",
+        "bluetooth.ts"
     ],
     "testFiles": [
         "test.ts"
@@ -22,5 +23,5 @@
     "supportedTargets": [
         "calliopemini"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "blocksprj"
 }
