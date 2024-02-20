@@ -1,9 +1,9 @@
-// Gib deinen Code hier ein
+
 namespace car4sender
 /*
 */ { // bluetooth.ts
 
-    let n_sendBuffer19 = Buffer.create(19) // wird gesendet mit radio.sendBuffer
+    export let n_sendBuffer19 = Buffer.create(19) // wird gesendet mit radio.sendBuffer
 
     export enum eBufferPointer {
         p0 = 1, p1 = 4, p2 = 7, p3 = 10, p4 = 13, p5 = 16

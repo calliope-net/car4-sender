@@ -12,7 +12,8 @@
         "README.md",
         "car4sender.ts",
         "bluetooth.ts",
-        "advanced.ts"
+        "advanced.ts",
+        "programmieren.ts"
     ],
     "testFiles": [
         "test.ts"
