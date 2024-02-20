@@ -14,7 +14,7 @@ namespace car4sender
         b0_Motor = 0, // 0..128..255
         b1_Servo = 1, // Bit 4-0 (0..31)
         b2_Fahrstrecke = 2, // Encoder in cm max. 255cm
-        b1_Bits = 3 // Bit 7-6-5
+        b1_3Bit = 3 // Bit 7-6-5
     }
 
     export enum eBufferBit {
@@ -34,9 +34,14 @@ namespace car4sender
         if (!pBufferPointer) pBufferPointer = n_BufferPointer // wenn nicht angegeben internen Wert nehmen
         switch (pBufferOffset) {
             case eBufferOffset.b1_Servo:
-                n_sendBuffer19.setUint8(pBufferPointer + pBufferOffset, Math.round(pByte / 3 - 14) & 0b00011111)
+                n_sendBuffer19[pBufferPointer + 1] &= 0b11100000 // AND Bit 7-6-5 bleiben; 4-3-2-1-0 auf 0 setzen
+                n_sendBuffer19[pBufferPointer + 1] |= (Math.round(pByte / 3 - 14) & 0b00011111) // OR Bit 7-6-5 bleiben; 4-3-2-1-0 auf Ergebnis setzen
+
+                //n_sendBuffer19.setUint8(pBufferPointer + pBufferOffset, Math.round(pByte / 3 - 14) & 0b00011111)
                 break
-            case eBufferOffset.b1_Bits:
+            case eBufferOffset.b1_3Bit:
+                n_sendBuffer19[pBufferPointer + 1] &= 0b00011111 // AND Bit 4-3-2-1-0 bleiben; 7-6-5 auf 0 setzen
+                n_sendBuffer19[pBufferPointer + 1] |= (pByte << 5) // OR Bit 4-3-2-1-0 bleiben
                 break
             default: // b0_Motor und b2_Fahrstrecke 0..255
                 n_sendBuffer19.setUint8(pBufferPointer + pBufferOffset, pByte)
@@ -48,9 +53,9 @@ namespace car4sender
     //% block="Bit schreiben %pBufferBit %pBit" weight=1
     export function sendBuffer0_setBit(pBufferBit: eBufferBit, pBit: boolean) {
         if (pBit)
-            n_sendBuffer19[0] |= pBufferBit // OR 0b10000000
+            n_sendBuffer19[0] |= pBufferBit // OR 0b10000000 Bit auf 1 setzen
         else
-            n_sendBuffer19[0] &= ~pBufferBit // AND 0b01111111
+            n_sendBuffer19[0] &= ~pBufferBit // AND 0b01111111 Bit auf 0 setzen
     }
 
 

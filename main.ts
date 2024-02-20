@@ -17,6 +17,7 @@ loops.everyInterval(500, function () {
     }
     car4sender.sendBuffer_setUint8(car4sender.eBufferOffset.b0_Motor, car4sender.joystickValues(car4sender.eJoystickValue.motor))
     car4sender.sendBuffer_setUint8(car4sender.eBufferOffset.b1_Servo, car4sender.joystickValues(car4sender.eJoystickValue.servo))
+    car4sender.sendBuffer_setUint8(car4sender.eBufferOffset.b1_3Bit, 4)
     car4sender.sendBuffer0_setBit(car4sender.eBufferBit.x80_MotorPower, bMotorPower)
     car4sender.sendBuffer0_setBit(car4sender.eBufferBit.x40_Hupe, input.buttonIsPressed(Button.A))
     car4sender.sendBuffer19()

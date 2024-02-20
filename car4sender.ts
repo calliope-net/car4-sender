@@ -11,6 +11,8 @@ namespace car4sender
     export let n_x: number, n_y: number, n_xMotor: number, n_yServo: number
     let n_xmin = 128, n_xmax = 128, n_ymin = 128, n_ymax = 128
 
+
+
     // ========== group="beim Start"
 
     //% group="beim Start"
@@ -54,7 +56,7 @@ namespace car4sender
     export enum eJoystickValue { x, y, motor, servo }
 
     //% group="Joystick"
-    //% block="Joystick Werte %pJoystickValue" weight=8
+    //% block="Joystick Variablen %pJoystickValue" weight=8
     export function joystickValues(pJoystickValue: eJoystickValue) {
         switch (pJoystickValue) {
             case eJoystickValue.x: return n_x
