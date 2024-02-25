@@ -18,10 +18,14 @@ namespace car4sender
     }
 
     export enum eBufferBit {
-        //% block="x80 Motor Power"
+        //% block="Motor Power"
         x80_MotorPower = 0x80,
-        //% block="x40 Hupe"
+        //% block="Hupe"
         x40_Hupe = 0x40,
+        //% block="connected & fahren Joystick"
+        //fahrenJostick = 0x00,
+        //% block="fahren Strecke"
+        fahrenStrecke = 0x01
     }
 
 
@@ -50,7 +54,8 @@ namespace car4sender
     }
 
     //% group="Datenpaket vorbereiten" subcategory="Bluetooth" color=#E3008C
-    //% block="Bit schreiben %pBufferBit %pBit" weight=1
+    //% block="Steuer-Byte 0 %pBufferBit %pBit" weight=1
+    //% pBit.shadow="toggleOnOff"
     export function sendBuffer0_setBit(pBufferBit: eBufferBit, pBit: boolean) {
         if (pBit)
             n_sendBuffer19[0] |= pBufferBit // OR 0b10000000 Bit auf 1 setzen

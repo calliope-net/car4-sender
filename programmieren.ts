@@ -13,7 +13,7 @@ namespace car4sender
     export function programmBlock(motor: number, servo: number, strecke: number) {
         return Buffer.fromArray([
             Math.round(Math.map(motor, -100, 100, 0, 255)),
-            Math.round(Math.map(servo, 0, 180, 1, 31)),
+            Math.round(Math.map(servo, 0, 180, 31, 1)),
             strecke
         ])
     }
@@ -24,11 +24,11 @@ namespace car4sender
     }
 
     //% group="Programmieren" subcategory="Programmieren"
-    //% block="Programm | Schritt 0 %p0 Schritt 1 %p1 Schritt 2 %p2 Schritt 3 %p Schritt 4 %p4 Schritt 5 %p5" weight=4
-    export function programm6(p0: Buffer, p1: Buffer, p2: Buffer, p3: Buffer, p4: Buffer, p5: Buffer,) {
+    //% block="Programm | Schritt 1 %p1 Schritt 2 %p2 Schritt 3 %p Schritt 4 %p4 Schritt 5 %p5" weight=4
+    export function programm6( p1: Buffer, p2: Buffer, p3: Buffer, p4: Buffer, p5: Buffer,) {
         let rBuffer = Buffer.create(19)
 
-        if (p0) rBuffer.write(eBufferPointer.p0, p0.slice(0, 2)) // 1-2 (3 bleibt frei)
+        //if (p0) rBuffer.write(eBufferPointer.p0, p0.slice(0, 2)) // 1-2 (3 bleibt frei)
         if (p1) rBuffer.write(eBufferPointer.p1, p1) // 4-5-6
         if (p2) rBuffer.write(eBufferPointer.p2, p2)
         if (p3) rBuffer.write(eBufferPointer.p3, p3)
