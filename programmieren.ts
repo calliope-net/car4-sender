@@ -7,7 +7,7 @@ namespace car4sender
 
 
     //% group="Programmieren" subcategory="Programmieren"
-    //% block="Motor %motor Servo %servo Strecke %pStrecke cm" weight=7
+    //% block="Motor %motor Servo %servo Strecke %strecke cm" weight=7
     //% motor.shadow="speedPicker" servo.shadow="protractorPicker" servo.defl=90
     //% strecke.min=1 strecke.max=255 strecke.defl=20
     export function programmBlock(motor: number, servo: number, strecke: number) {
@@ -25,7 +25,7 @@ namespace car4sender
 
     //% group="Programmieren" subcategory="Programmieren"
     //% block="Programm | Schritt 1 %p1 Schritt 2 %p2 Schritt 3 %p Schritt 4 %p4 Schritt 5 %p5" weight=4
-    export function programm6( p1: Buffer, p2: Buffer, p3: Buffer, p4: Buffer, p5: Buffer,) {
+    export function programm6(p1: Buffer, p2: Buffer, p3: Buffer, p4: Buffer, p5: Buffer,) {
         let rBuffer = Buffer.create(19)
 
         //if (p0) rBuffer.write(eBufferPointer.p0, p0.slice(0, 2)) // 1-2 (3 bleibt frei)
