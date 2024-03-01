@@ -72,6 +72,18 @@ namespace car4sender
     }
 
 
+    // ========== group="Bluetooth senden"  subcategory="Programmieren" color=#E3008C
+
+    //% group="Bluetooth senden"  subcategory="Programmieren" color=#E3008C
+    //% block="Programm senden und fahren"
+    export function sendProgramm19() {
+        sendBuffer0_setBit(eBufferBit.fahrenStrecke, true)
+        sendBuffer0_setBit(eBufferBit.x80_MotorPower, true)
+
+        if (!n_Simulator)
+            radio.sendBuffer(n_sendBuffer19)
+    }
+
 
     // ========== group="anzeigen" subcategory="Programmieren"
 
