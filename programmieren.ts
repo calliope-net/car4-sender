@@ -22,7 +22,7 @@ namespace car4sender
     // ========== group="programmieren" subcategory="Programmieren"
 
     //% group="programmieren" subcategory="Programmieren"
-    //% block="Programm | Schritt 1 %p1 Schritt 2 %p2 Schritt 3 %p Schritt 4 %p4 Schritt 5 %p5" weight=8
+    //% block="Programm 'Fahrplan' | Schritt 1 %p1 Schritt 2 %p2 Schritt 3 %p Schritt 4 %p4 Schritt 5 %p5" weight=8
     //% p1.shadow="car4sender_programmSchritt"
     export function programm6(p1: Buffer, p2: Buffer, p3: Buffer, p4: Buffer, p5: Buffer,) {
         let rBuffer = Buffer.create(19)
