@@ -16,7 +16,7 @@ namespace car4sender
     // ========== group="beim Start"
 
     //% group="beim Start"
-    //% block="CaR4 Sender beim Start Funkgruppe %funkgruppe" weight=8
+    //% block="CaR4 Sender Funkgruppe %funkgruppe" weight=8
     //% funkgruppe.min=0 funkgruppe.max=255 funkgruppe.defl=240
     //% inlineInputMode=inline 
     export function beimStart(funkgruppe: number) {

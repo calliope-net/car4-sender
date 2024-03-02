@@ -75,7 +75,7 @@ namespace car4sender
     // ========== group="Bluetooth senden"  subcategory="Programmieren" color=#E3008C
 
     //% group="Bluetooth senden"  subcategory="Programmieren" color=#E3008C
-    //% block="Programm senden und fahren"
+    //% block="Programm senden und los fahren"
     export function sendProgramm19() {
         sendBuffer0_setBit(eBufferBit.fahrenStrecke, true)
         sendBuffer0_setBit(eBufferBit.x80_MotorPower, true)
